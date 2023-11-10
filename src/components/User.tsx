@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, setPageSize, setPage } from "../actions/userAction";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useEffect, FC } from "react";
 
@@ -34,6 +34,8 @@ const User: FC<State> = () => {
   const { users, loading, error, currentPage, pageSize } = useSelector(
     (state: State) => state
   );
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsersFunction = fetchUsers();
@@ -83,13 +85,12 @@ const User: FC<State> = () => {
                 .slice((currentPage - 1) * pageSize, currentPage * pageSize)
                 .map((user: UserProps, index: number) => (
                   <tr key={index}>
-                    <Link to={`/user/${user.login.uuid}`}>
-                      <td>
-                        {user.name.title}
-                        {user.name.first}
-                        {user.name.last}
-                      </td>
-                    </Link>
+                    <td onClick={() => navigate(`/user/${user.login.uuid}`)}>
+                      {user.name.title}
+                      {user.name.first}
+                      {user.name.last}
+                    </td>
+
                     <td>{user.location.country}</td>
                     <td>{user.email}</td>
                     <td>{user.phone}</td>

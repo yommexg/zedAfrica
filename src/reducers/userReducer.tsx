@@ -41,7 +41,7 @@ const initialState: State = {
 export default function reducer(
   state: State = initialState,
   action: AnyAction
-) {
+): State {
   switch (action.type) {
     case FETCH_USERS_REQUEST:
       return {
@@ -60,9 +60,7 @@ export default function reducer(
     case FETCH_USERS_ERROR:
       return {
         ...state,
-        loading: setTimeout(() => {
-          false;
-        }, 2000),
+        loading: false,
         error: action.error,
         users: [],
       };
