@@ -65,7 +65,11 @@ const UserDetails = () => {
 
   return (
     <div className="user-detail-container">
-      <img src={foundUser?.picture.large} width={400} alt="" />
+      <img
+        src={foundUser?.picture.large}
+        width={200}
+        alt={foundUser?.name.first}
+      />
       <h2>
         Name: {foundUser?.name.title} {foundUser?.name.first}{" "}
         {foundUser?.name.last}

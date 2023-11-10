@@ -30,7 +30,6 @@ export const fetchUsers =
 
       const response = await axios.get("https://randomuser.me/api?results=50");
       const users: Array<User> = response.data.results;
-      console.log(users);
 
       dispatch({ type: FETCH_USERS_SUCCESS, users });
     } catch (error) {

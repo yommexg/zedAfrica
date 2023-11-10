@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { useEffect, FC } from "react";
 
+import "./User.css";
+
 interface UserProps {
   id: string;
   name: {
@@ -85,21 +87,27 @@ const User: FC<State> = () => {
                 .slice((currentPage - 1) * pageSize, currentPage * pageSize)
                 .map((user: UserProps, index: number) => (
                   <tr key={index}>
-                    <td onClick={() => navigate(`/user/${user.login.uuid}`)}>
+                    <td
+                      width="30%"
+                      style={{ color: "red", cursor: "pointer" }}
+                      onClick={() => navigate(`/user/${user.login.uuid}`)}
+                    >
                       {user.name.title}
                       {user.name.first}
                       {user.name.last}
                     </td>
 
-                    <td>{user.location.country}</td>
-                    <td>{user.email}</td>
-                    <td>{user.phone}</td>
+                    <td width="20%">{user.location.country}</td>
+                    <td width="30%">{user.email}</td>
+                    <td width="20%">{user.phone}</td>
                   </tr>
                 ))}
             </tbody>
           </table>
-          <button onClick={handlePreviousPageClick}>Prev</button>
-          <button onClick={handleNextPageClick}>Next</button>
+          <div className="buttons">
+            <button onClick={handlePreviousPageClick}>Prev</button>
+            <button onClick={handleNextPageClick}>Next</button>
+          </div>
         </>
       )}
     </div>
